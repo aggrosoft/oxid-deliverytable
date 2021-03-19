@@ -21,7 +21,7 @@ class DeliveryTableViewConfig extends DeliveryTableViewConfig_parent
         foreach ($oDeliverySetList as $oDeliverySet)
         {
 
-            $obj = new stdClass();
+            $obj = new \stdClass();
             $obj->delset = $oDeliverySet;
             $obj->deliveries = array();
             $oDeliveryList = oxNew(\OxidEsales\Eshop\Application\Model\DeliveryList::class);
@@ -32,7 +32,7 @@ class DeliveryTableViewConfig extends DeliveryTableViewConfig_parent
                 $oCountryList = oxNew(\OxidEsales\Eshop\Application\Model\CountryList::class);
                 $oCountryList->selectString("select * from oxcountry where oxid in (select OXOBJECTID from oxobject2delivery where oxobject2delivery.oxdeliveryid='".$oDelivery->getId()."' 
 					and oxobject2delivery.oxtype='oxcountry')");
-                $delObj = new stdClass();
+                $delObj = new \stdClass();
                 $delObj->delivery = $oDelivery;
                 $delObj->countries = $oCountryList;
                 $obj->deliveries[] = $delObj;
@@ -41,5 +41,15 @@ class DeliveryTableViewConfig extends DeliveryTableViewConfig_parent
         }
 
         return $result;
+    }
+
+    public function formatPriceInternal($price)
+    {
+        return \OxidEsales\Eshop\Core\Registry::getLang()->formatCurrency($price);
+    }
+
+    public function stripTags($str)
+    {
+        return str_replace("rn","",strip_tags($str,"<p>"));
     }
 }
