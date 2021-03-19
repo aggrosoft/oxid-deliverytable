@@ -1,0 +1,24 @@
+{
+  "name": "aggrosoft/oxid-deliverytable",
+  "description": "Adds method to resolve delivery table",
+  "type": "oxideshop-module",
+  "keywords": ["oxid", "modules", "eShop", "delivery"],
+  "homepage": "https://github.com/aggrosoft/oxid-deliverytable",
+  "license": "MIT",
+  "extra": {
+    "oxideshop": {
+      "blacklist-filter": [
+        "documentation/**/*.*"
+      ],
+      "target-directory": "agdeliverytable"
+    }
+  },
+  "require": {
+    "php": ">=7.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Aggrosoft\\DeliveryTable\\": "../../../source/modules/agdeliverytable"
+    }
+  }
+}
